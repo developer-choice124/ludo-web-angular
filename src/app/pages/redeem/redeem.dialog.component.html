@@ -1,0 +1,37 @@
+<div id="playersDialog">
+    <h1 mat-dialog-title>
+        Enter payTm Details
+    </h1>
+    <form [formGroup]="formRedeemGroup" (ngSubmit)="onSubmit()">
+        <div mat-dialog-content>
+            <!-- <div class="">{{data.redeemdata}}</div> -->
+            <div class="col-sm-12">
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label>Room Coin</label>
+                        <input type="text" formControlName="name" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+                        <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                            <div *ngIf="f.name.errors.required">Coin is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label>Reference No.</label>
+                        <input type="text" formControlName="refid" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted && f.refid.errors }" />
+                        <div *ngIf="submitted && f.refid.errors" class="invalid-feedback">
+                            <div *ngIf="f.refid.errors.required">Reference ID is required</div>
+                            <div *ngIf="f.refid.errors.minlength">Reference ID must be at least 6 characters</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div mat-dialog-actions>
+            <button mat-button [disabled]="!formRedeemGroup.valid" class="buttondialog saveit mat-raised-button" type="submit">Save</button>
+            <button mat-button class="buttondialog mat-raised-button" (click)="onNoClick()">Close</button>
+        </div>
+    </form>
+</div>

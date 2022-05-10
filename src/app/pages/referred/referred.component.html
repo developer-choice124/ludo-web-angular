@@ -1,0 +1,79 @@
+<div class="col-sm-12 col-lg-12" id="Referred">
+    
+    <div id="roomlist">
+      <div class="col-sm-12 col-lg-12 padnone">
+        <div class="animated fadeIn">
+          <div class="col-sm-12 col-lg-12 padnone">
+            <mat-card class="matCard">
+              <mat-card-header>
+                <div class="mat-card-header-text">
+                  <h5>Search Referred </h5>
+                </div>
+                <mat-form-field appearance="outline">
+                  <mat-label>Search Room</mat-label>
+                  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                  <mat-icon matSuffix>search</mat-icon>
+                </mat-form-field>
+  
+                <div class="mat-card-header-text-2">
+                <ngx-mat-drp (selectedDateRangeChanged)="updateRange($event)" [options]="options" #dateRangePicker></ngx-mat-drp></div>
+              </mat-card-header>
+              <mat-card-content>
+                <div class="mat-elevation-z8">
+                  <div class="mat-table-min-height">
+                    <mat-table [dataSource]="dataSource" matSort>
+                      <!-- <ng-container matColumnDef="players">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Players </th>
+                        <td mat-cell *matCellDef="let row">
+                          <button mat-button class="btn-default btn-custom">View Players</button>
+                        </td>
+                      </ng-container> -->
+                      <ng-container matColumnDef="req_phone">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Requested Player </th>
+                        <td mat-cell *matCellDef="let row"> {{row.req_phone}} </td>
+                      </ng-container>
+                      <ng-container matColumnDef="reqid">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Requester ID </th>
+                        <td mat-cell *matCellDef="let row"> {{row.reqid}} </td>
+                      </ng-container>
+                      <ng-container matColumnDef="req_to_phone">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Refer Phone </th>
+                        <td mat-cell *matCellDef="let row"> {{row.req_to_phone}} </td>
+                      </ng-container>
+                      <ng-container matColumnDef="is_active">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Active </th>
+                        <td mat-cell *matCellDef="let row"> {{row.is_active}}  
+                        </td>
+                      </ng-container>
+                      <ng-container matColumnDef="created_on">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Date Created </th>
+                        <td mat-cell *matCellDef="let row"> {{row.created_on | date:'medium'}} </td>
+                      </ng-container>
+                      <ng-container matColumnDef="updated_on">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Date Modified </th>
+                        <td mat-cell *matCellDef="let row"> {{row.updated_on | date:'medium'}} </td>
+                      </ng-container>
+                      <ng-container matColumnDef="_id">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+                        <td mat-cell *matCellDef="let row"> {{row._id}} </td>
+                      </ng-container>
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+                      </tr>
+                    </mat-table>
+                  </div>
+                  <mat-paginator #scheduledOrdersPaginator showFirstLastButtons [pageSizeOptions]="[5, 10, 25, 100]">
+                  </mat-paginator>
+                </div>
+              </mat-card-content>
+            </mat-card>
+  
+          </div>
+  
+        </div>
+      </div>
+    </div>
+  
+    <!--/.Cont Animation-->
+  </div>
+  <!--/.Container-->

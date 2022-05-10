@@ -1,0 +1,119 @@
+<div id="appupdatelist">
+    <div class="animated fadeIn">
+      <div class="col-sm-12 col-lg-12">
+        <div class="row">
+          <div class="col-sm-12 col-lg-12">
+            <mat-card class="matCard">
+              <mat-card-header>
+                <div class="mat-card-header-text">
+                  <h5>Search Updates</h5>
+                </div>
+                <!-- <mat-form-field>
+                  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  
+                </mat-form-field> -->
+                <mat-form-field appearance="outline">
+                  <mat-label>Search Buy Coins</mat-label>
+                  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                  <mat-icon matSuffix>search</mat-icon>
+                </mat-form-field>
+  
+              </mat-card-header>
+              <mat-card-content>
+                <div class="mat-elevation-z8">
+                  <div class="mat-table-min-height">
+                    <mat-table [dataSource]="dataSource" matSort>
+  
+  
+                      <ng-container matColumnDef="phone">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Phone </th>
+                        <td mat-cell *matCellDef="let row">  {{row.phone}}</td>
+                      </ng-container>
+  
+                      <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name</th>
+                        <td mat-cell *matCellDef="let row">{{row.name}}</td>
+                      </ng-container>  
+  
+                      <!-- <ng-container matColumnDef="email">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Email</th>
+                        <td mat-cell *matCellDef="let row">{{row.email}}</td>
+                      </ng-container>   -->
+  
+                      <ng-container matColumnDef="is_active">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Active Status</th>
+                        <td mat-cell *matCellDef="let row">{{row.is_active}}</td>
+                      </ng-container>
+  
+  
+                      <ng-container matColumnDef="type">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Type</th>
+                        <td mat-cell *matCellDef="let row"><h5 *ngIf="row.type">Skippable</h5><h5 *ngIf="!row.type">Compulsory </h5></td>
+                      </ng-container>
+  
+  
+                      <ng-container matColumnDef="version">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Version</th>
+                        <td mat-cell *matCellDef="let row">{{row.version}}</td>
+                      </ng-container>
+  
+  
+                      <ng-container matColumnDef="link">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Link</th>
+                        <td mat-cell *matCellDef="let row">{{row.link}}</td>
+                      </ng-container>
+  
+  
+                      <ng-container matColumnDef="whatsnew">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header class="width300"> What's New</th>
+                        <td mat-cell *matCellDef="let row">{{row.whatsnew | slice : 0:20}}</td>
+                      </ng-container>
+  
+  
+                      <ng-container matColumnDef="version_type">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Version Type</th>
+                        <td mat-cell *matCellDef="let row">{{row.version_type}}</td>
+                      </ng-container>
+  
+  
+                      <ng-container matColumnDef="created_on">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Created On</th>
+                        <td mat-cell *matCellDef="let row">{{row.created_on | date:'medium'}}</td>
+                      </ng-container>
+  
+                      <!-- <ng-container matColumnDef="_id">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                        <td mat-cell *matCellDef="let row"> {{row._id}} </td>
+                      </ng-container>
+  
+                      <ng-container matColumnDef="updatedID">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> updatedID</th>
+                        <td mat-cell *matCellDef="let row">{{row.updatedID}}</td>
+                      </ng-container> -->
+
+                      <!-- <ng-container matColumnDef="action">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+                        <td mat-cell *matCellDef="let row" class="action-link">
+                          <a mat-button class="button-red"(click)="openDialog('Delete',row._id, row.coins)"><i class="material-icons">
+                            edit
+                            </i>Delete</a>
+                        </td>
+                      </ng-container> -->
+  
+  
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+                      </tr>
+                    </mat-table>
+                  </div>
+                  <mat-paginator showFirstLastButtons [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+  
+        </div>
+      </div>
+    </div>
+  </div>
+  

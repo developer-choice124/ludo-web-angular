@@ -1,0 +1,25 @@
+// If you want to override variables do it here
+@import "variables";
+
+// Import styles
+@import "~@coreui/coreui/scss/coreui";
+
+// If you want to add something do it here
+@import "custom";
+
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* You can add global styles to this file, and also import other style files */
+input.ng-invalid.ng-touched {
+  border: 2px red solid;
+}
+textarea.ng-invalid.ng-touched {
+  border: 2px red solid;
+}
+
+.ludo-card:hover {
+  box-shadow: 2px 3px 5px #b4b4b4;
+  transition: box-shadow 0.2s;
+}

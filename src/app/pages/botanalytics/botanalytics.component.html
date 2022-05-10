@@ -1,0 +1,154 @@
+<!-- <span class="iframeout" id="iframeout"><iframe class="iframe" [src]="url | safe"></iframe></span> -->
+<div class="col-sm-12 col-lg-12" id="analytics">
+  <div class="animated fadeIn">
+    <div class="col-sm-12 col-lg-12 pad-sty">
+      <div class="row">
+        <div class="col-sm-6 col-lg-3">
+          <div class="card text-white bg-info">
+            <div class="card-body pb-0">
+              <button type="button" class="btn btn-transparent p-0 float-right">
+                <i class="icon-location-pin"></i>
+              </button>
+              <div class="text-value">BOARD - {{totalMonthDetailsCount}}</div>
+              <div>Games Played this Month<br><br><br></div>
+            </div>
+            <div class="chart-wrapper mt-3 mx-3" style="height:70px;">
+              <canvas baseChart class="chart" [datasets]="lineChart2Data" [labels]="lineChart2Labels"
+                [options]="lineChart2Options" [colors]="lineChart2Colours" [legend]="lineChart2Legend"
+                [chartType]="lineChart2Type"></canvas>
+            </div>
+          </div>
+        </div>
+        <!--/.col-->
+        <div class="col-sm-6 col-lg-3">
+          <div class="card text-white bg-primary">
+            <div class="card-body pb-0">
+              <div class="text-value">WIN - {{totalMonthDetailsMoneyWon}}</div>
+              <div>Won Coins for this Month<br><br><br></div>
+            </div>
+            <div class="chart-wrapper mt-3 mx-3" style="height:70px;">
+              <canvas baseChart class="chart" [datasets]="lineChart1Data" [labels]="lineChart1Labels"
+                [options]="lineChart1Options" [colors]="lineChart1Colours" [legend]="lineChart1Legend"
+                [chartType]="lineChart1Type"></canvas>
+            </div>
+          </div>
+        </div>
+        <!--/.col-->
+        <div class="col-sm-6 col-lg-3">
+          <div class="card text-white bg-warning">
+            <div class="card-body pb-0">
+              <div class="text-value" style="font-size: 1.125rem;">LOSS - {{totalMonthDetailsMoneyLost}} <br>( 25% is
+                {{twentyyfivpercent}} )</div>
+              <div>Lost Coins for this month<br>.</div>
+            </div>
+            <div class="chart-wrapper mt-3" style="height:70px;">
+              <canvas baseChart class="chart" [datasets]="lineChart3Data" [labels]="lineChart3Labels"
+                [options]="lineChart3Options" [colors]="lineChart3Colours" [legend]="lineChart3Legend"
+                [chartType]="lineChart3Type"></canvas>
+            </div>
+          </div>
+        </div>
+        <!--/.col-->
+        <div class="col-sm-6 col-lg-3">
+          <div class="card text-white bg-danger">
+            <div class="card-body pb-0">
+              <div class="text-value">TOTAL - {{totalMonthDetailsMoney}}</div>
+              <div>Game Total Coins for this <br><br><br></div>
+            </div>
+            <div class="chart-wrapper mt-3 mx-3" style="height:70px;">
+              <canvas baseChart class="chart" [datasets]="barChart1Data" [labels]="barChart1Labels"
+                [options]="barChart1Options" [colors]="barChart1Colours" [legend]="barChart1Legend"
+                [chartType]="barChart1Type"></canvas>
+            </div>
+          </div>
+        </div>
+        <!--/.col-->
+      </div>
+    </div>
+    <!--/.row-->
+  </div>
+  <!--/.Cont Animation-->
+
+  <div id="roomlist">
+    <div class="col-sm-12 col-lg-12 padnone">
+      <div class="animated fadeIn">
+        <div class="col-sm-12 col-lg-12 padnone">
+          <mat-card class="matCard">
+            <mat-card-header>
+              <div class="mat-card-header-text">
+                <h5>Search Gameroom</h5>
+              </div>
+              <mat-form-field appearance="outline">
+                <mat-label>Search Room</mat-label>
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                <mat-icon matSuffix>search</mat-icon>
+              </mat-form-field>
+
+              <div class="mat-card-header-text-2">
+              <ngx-mat-drp (selectedDateRangeChanged)="updateRange($event)" [options]="options" #dateRangePicker></ngx-mat-drp></div>
+            </mat-card-header>
+            <mat-card-content>
+              <div class="mat-elevation-z8">
+                <div class="mat-table-min-height">
+                  <mat-table [dataSource]="dataSource" matSort>
+                    <ng-container matColumnDef="_id">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+                      <td mat-cell *matCellDef="let row"> {{row._id}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="players">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Players </th>
+                      <td mat-cell *matCellDef="let row">
+                        <!-- Player One ID- {{row.players[0].varifyId}} -( {{row.players[0].colyseus_id}} ) <br>
+                        Player Two ID - {{row.players[1].varifyId}} -( {{row.players[1].colyseus_id}} )   -->
+                        <button mat-button class="btn-default btn-custom" (click)="openDialog(row.players,row.winnerId)">View Players</button>
+                      </td>
+                    </ng-container>
+                    <ng-container matColumnDef="room_coin_id">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Room Coin Id </th>
+                      <td mat-cell *matCellDef="let row"> {{row.room_coin_id}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="coly_room_id">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Colyseus Room ID </th>
+                      <td mat-cell *matCellDef="let row"> {{row.coly_room_id}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="max_players">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Max Players </th>
+                      <td mat-cell *matCellDef="let row"> {{row.max_players}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="date_created">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Date Created </th>
+                      <td mat-cell *matCellDef="let row"> {{row.date_created | date:'medium'}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="coins">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Coins </th>
+                      <td mat-cell *matCellDef="let row"> {{row.coins}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="date_modified">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Date Modified </th>
+                      <td mat-cell *matCellDef="let row"> {{row.date_modified | date:'medium'}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="winnerId">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Winner Id </th>
+                      <td mat-cell *matCellDef="let row"> {{row.winnerId}} </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+                    </tr>
+                  </mat-table>
+                </div>
+                <mat-paginator #scheduledOrdersPaginator showFirstLastButtons [pageSizeOptions]="[5, 10, 25, 100]">
+                </mat-paginator>
+              </div>
+            </mat-card-content>
+          </mat-card>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!--/.Cont Animation-->
+</div>
+<!--/.Container-->

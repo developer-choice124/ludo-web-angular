@@ -1,0 +1,53 @@
+<div id="postroom" class="animated fadeIn">
+  <div class="col-sm-12 col-lg-12">
+    <div class="row">
+      <div class="col-sm-12 col-lg-12">
+        <mat-card class="matCard">
+
+          <mat-card-header>
+            <h5 class="">Create Room Coins</h5>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="card-body">
+              <h5>Room coins that are added here will be shown to the user just before they enter in the room
+                and create a board. <br>  This coins will ceate a board for playing.</h5>
+              <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                <div class="form-row">
+                  <div class="form-group col">
+                    <label>Room Coin</label>
+                    <input type="number" formControlName="coin" class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.coin.errors }" />
+                    <div *ngIf="submitted && f.coin.errors" class="invalid-feedback">
+                      <div *ngIf="f.coin.errors.required">Coin is required</div>
+                      <div *ngIf="f.coin.errors.minlength">Coin must be at least 2 characters</div>
+                    </div>
+                  </div>
+                  <div class="form-group col">
+                    <label>Confirm Room Coin</label>
+                    <input type="number" formControlName="confirmcoin" class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.confirmcoin.errors }" />
+                    <div *ngIf="submitted && f.confirmcoin.errors" class="invalid-feedback">
+                      <div *ngIf="f.confirmcoin.errors.required">Confirm coin is required</div>
+                      <div *ngIf="f.confirmcoin.errors.mustMatch">Coin must match</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group form-check">
+                  <input type="checkbox" formControlName="acceptTerms" id="acceptTerms" class="form-check-input"
+                    [ngClass]="{ 'is-invalid': submitted && f.acceptTerms.errors }" />
+                  <label for="acceptTerms" class="form-check-label">Accept Terms & Conditions</label>
+                  <div *ngIf="submitted && f.acceptTerms.errors" class="invalid-feedback">Accept Ts & Cs is required
+                  </div>
+                </div>
+                <div class="text-center">
+                  <button class="btn btn-primary mr-1">Submit</button>
+                  <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
+                </div>
+              </form>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

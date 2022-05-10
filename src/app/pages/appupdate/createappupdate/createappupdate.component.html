@@ -1,0 +1,100 @@
+<div id="updateapp" class="animated fadeIn">
+    <div class="col-sm-12 col-lg-12">
+      <div class="row">
+        <div class="col-sm-12 col-lg-12">
+          <mat-card class="matCard">
+  
+            <mat-card-header>
+              <h5 class="">Create App Update</h5>
+            </mat-card-header>
+            <mat-card-content>
+              <div class="card-body">
+                <h5>Here you can create a App where you upload the type and other details
+                     of the App so every one can see and download from website</h5>
+                <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+                  <div class="form-row">
+                    <div class="form-group col">
+                      <label>Version</label>
+                      <input type="number" formControlName="version" class="form-control"
+                      inputmode="numeric" pattern="[0-9]*" 
+                      (keypress)="keyPress($event)" 
+                        [ngClass]="{ 'is-invalid': submitted && f.version.errors }" />
+                      <div *ngIf="submitted && f.version.errors" class="invalid-feedback">
+                        <div *ngIf="f.version.errors.required">Version number is required</div>
+                      </div>
+                    </div>
+                    <div class="form-group col">
+                      <label>Front Shown Version</label>
+                      <!-- inputmode="numeric" pattern="[0-9]*"  -->
+                      <input type="number" formControlName="version_type" class="form-control"
+                      (keypress)="keyPress2($event)" 
+                        [ngClass]="{ 'is-invalid': submitted && f.version_type.errors }" />
+                      <div *ngIf="submitted && f.version_type.errors" class="invalid-feedback">
+                        <div *ngIf="f.version_type.errors.required">Version value is required to show in the Front</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col">
+                      <label>Email</label>
+                      <input type="email" formControlName="email" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                      <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                        <div *ngIf="f.email.errors.required">Email is required</div>
+                        <div *ngIf="f.email.errors.email">Must be an Email</div>
+                      </div>
+                    </div>
+                    <div class="form-group col">
+                      <label>Link for Download</label>
+                      <input type="text" formControlName="link" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.link.errors }" />
+                      <div *ngIf="submitted && f.link.errors" class="invalid-feedback">
+                        <div *ngIf="f.link.errors.required">link is required</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col">
+                      <label>Update Date</label>
+                      <input  [matDatepicker]="date_picker" [ngClass]="{ 'is-invalid': submitted && f.date.errors }"
+                                    name="date" formControlName="date"
+                                    >
+                                <mat-datepicker-toggle matSuffix [for]="date_picker">
+                                </mat-datepicker-toggle>
+                                <mat-datepicker type="datetime" clockStep="5"
+                                    #date_picker></mat-datepicker>
+                      
+                      <div *ngIf="submitted && f.date.errors" class="invalid-feedback">
+                        <div *ngIf="f.date.errors.required">Date is required</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col">
+                      <label>Whats New (Features)</label>
+                      <textarea formControlName="whatsnew" class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.whatsnew.errors }"></textarea>
+                      <div *ngIf="submitted && f.whatsnew.errors" class="invalid-feedback">
+                        <div *ngIf="f.whatsnew.errors.required">Whats new features is required</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group form-check">
+                    <input type="checkbox" formControlName="type" id="type" class="form-check-input"
+                      [ngClass]="{ 'is-invalid': submitted && f.type.errors }" />
+                    <label for="type" class="form-check-label">please tick is the Update is Compulsory</label>
+                   
+                  </div>
+                  <div class="text-center">
+                    <button class="btn btn-primary mr-1">Submit</button>
+                    <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
+                  </div>
+                </form>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+  

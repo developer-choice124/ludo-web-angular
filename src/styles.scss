@@ -1,0 +1,15 @@
+@import "./scss/style.scss";
+.sidebar .nav-link {
+  padding: 0.675rem 0.51rem;
+}
+body{
+  font-size: 0.705rem;
+}
+.sidebar .nav-link .nav-icon {
+  display: inline-block;
+  width: 1.09375rem;
+  margin: 0 0.35rem 0 0;
+  font-size: 0.6875rem;
+  color: #ffc107;
+  text-align: center;
+}

@@ -1,0 +1,70 @@
+<div id="buylist">
+  <div class="animated fadeIn">
+    <div class="col-sm-12 col-lg-12">
+      <div class="row">
+        <div class="col-sm-12 col-lg-12">
+          <mat-card class="matCard">
+            <mat-card-header>
+              <div class="mat-card-header-text">
+                <h5>Search Buy Coins details</h5>
+              </div>
+              <!-- <mat-form-field>
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+
+              </mat-form-field> -->
+              <mat-form-field appearance="outline">
+                <mat-label>Search Buy Coins</mat-label>
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                <mat-icon matSuffix>search</mat-icon>
+              </mat-form-field>
+
+            </mat-card-header>
+            <mat-card-content>
+              <div class="mat-elevation-z8">
+                <div class="mat-table-min-height">
+                  <mat-table [dataSource]="dataSource" matSort>
+
+                    <!-- ID Column -->
+                    <ng-container matColumnDef="_id">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                      <td mat-cell *matCellDef="let row"> {{row._id}} </td>
+                    </ng-container>
+
+                    <!-- Progress Column -->
+                    <ng-container matColumnDef="coins">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Coins </th>
+                      <td mat-cell *matCellDef="let row">  {{row.coins}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="price">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Price</th>
+                      <td mat-cell *matCellDef="let row">{{row.price}}</td>
+                    </ng-container>
+
+                    <!-- Action Column -->
+                    <ng-container matColumnDef="action">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+                      <td mat-cell *matCellDef="let row" class="action-link">
+                        <!-- <a mat-button (click)="openDialog('Update',row._id)">Edit</a> | -->
+                        <a mat-button class="button-red"(click)="openDialog('Delete',row._id, row.coins)"><i class="material-icons">
+                          edit
+                          </i>Delete</a>
+                      </td>
+                    </ng-container>
+
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+                    </tr>
+                  </mat-table>
+                </div>
+                <mat-paginator showFirstLastButtons [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

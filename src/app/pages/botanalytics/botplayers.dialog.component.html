@@ -1,0 +1,17 @@
+<div id="playersDialog">
+<h1 mat-dialog-title>
+    Players List
+</h1>
+<div mat-dialog-content>
+    <div class="viewvvalue" *ngIf="view2">
+            <p>Player One ID- {{data.playersdata[0].varifyId}}-( {{data.playersdata[0].colyseus_id}} )</p>
+            <p> User Coins Before Playing : {{data.playersdata[0].last_updated_user_coin}}</p><p *ngIf="data.playersdata[0].bot"> Bot : {{data.playersdata[0].bot}} </p><br/><br/>
+            <p>Player Two ID - {{data.playersdata[1].varifyId}} -( {{data.playersdata[1].colyseus_id}} )</p>
+            <p> User Coins Before Playing : {{data.playersdata[1].last_updated_user_coin}} </p><p *ngIf="data.playersdata[1].bot">Bot : {{data.playersdata[1].bot}} </p>
+            <p class="winnerpara">Winner ID - {{data.winnerdata}}</p>
+    </div>
+</div>
+<div mat-dialog-actions>
+    <button mat-button class="buttondialog" (click)="onNoClick()">Close</button>
+</div>
+</div>

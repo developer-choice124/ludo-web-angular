@@ -1,0 +1,193 @@
+
+
+#roomlist {
+  .padnone {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  width: 100%;
+  .matCard {
+    padding: 15px;
+    margin-bottom: 15px;
+    .mat-card-header {
+      h5 {
+        margin: 15px 10px;
+        width: 200px;
+      }
+      .Backbutton {
+        background-color: #2f353a;
+        color: #fff;
+        margin-top: 5px;
+
+        .mat-button-wrapper {
+          .material-icons {
+            padding-right: 10px;
+            display: none;
+          }
+          .text {
+          }
+        }
+        &:hover .mat-button-wrapper .material-icons {
+          display: inline-block;
+          -webkit-animation: fadeIn 1s;
+          animation: fadeIn 1s;
+        }
+      }
+      .mat-card-header-text {
+        h5 {
+          margin: 15px 10px;
+          width: 200px;
+          font-size: 22px;
+          font-weight: bolder;
+        }
+      }
+      .mat-form-field {
+        width: 100%;
+      }
+      @media only screen and (max-width: 600px) {
+        display: block;
+      }
+    }
+    .mat-card-content {
+      .mat-table-min-height {
+        min-height: 300px;
+        width: 100%;
+        mat-table {
+          --scrollbarBG: #cfd8dc;
+          --thumbBG: rgb(173, 175, 177);
+          display: block;
+          // overflow: hidden;
+          overflow-x: scroll;
+          scrollbar-width: thin;
+          scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+          width: 100%;
+
+          &::-webkit-scrollbar {
+            width: 11px;
+          }
+          &::-webkit-scrollbar-track {
+            background: var(--scrollbarBG);
+          }
+          &::-webkit-scrollbar-thumb {
+            background-color: var(--thumbBG);
+            border-radius: 6px;
+            border: 3px solid var(--scrollbarBG);
+            &:hover {
+              border: 8px solid var(--scrollbarBG);
+            }
+          }
+          &::-o-scrollbar {
+            width: 11px;
+          }
+          &::-o-scrollbar-track {
+            background: var(--scrollbarBG);
+          }
+          &::-o-scrollbar-thumb {
+            background-color: var(--thumbBG);
+            border-radius: 6px;
+            border: 3px solid var(--scrollbarBG);
+            &:hover {
+              border: 8px solid var(--scrollbarBG);
+            }
+          }
+          &::-moz-scrollbar {
+            width: 11px;
+          }
+          &::-moz-scrollbar-track {
+            background: var(--scrollbarBG);
+          }
+          &::-moz-scrollbar-thumb {
+            background-color: var(--thumbBG);
+            border-radius: 6px;
+            border: 3px solid var(--scrollbarBG);
+            &:hover {
+              border: 8px solid var(--scrollbarBG);
+            }
+          }
+          td.mat-cell:first-of-type,
+          td.mat-footer-cell:first-of-type,
+          th.mat-header-cell:first-of-type {
+            padding-left: 15px;
+          }
+          .mat-header-cell {
+            text-align: center;
+            font-weight: bolder;
+            vertical-align: middle;
+            padding: 0 15px;
+            border-right: 1px solid #eee;
+            font-size: 13px;
+            color: #000;
+            .mat-sort-header-container {
+              button {
+                color: #737373;
+                font-size: 18px;
+              }
+            }
+          }
+          td.mat-cell:first-of-type,
+          td.mat-footer-cell:first-of-type,
+          th.mat-header-cell:first-of-type {
+            padding-left: 15px;
+          }
+          tr {
+            th{
+              width: 10%;
+              .mat-sort-header-container button{
+                margin: 0 auto;
+              }
+            }
+            td {
+              &.mat-cell {
+                color: rgba(115, 115, 115, 0.87);
+              }
+              .ButtonRoomDetails {
+                background-color: #ee504e;
+                color: #fff;
+                border-radius: 5px;
+              }
+              .destroybutton {
+                background-color: #ee504e;
+                color: #fff;
+                border-radius: 5px;
+              }
+              .button-red {
+                background-color: #e10303c9;
+                color: #fff;
+                padding: 0 23px;
+                border-radius: 7px;
+                border: none;
+                i {
+                  font-size: 16px;
+                  -webkit-transform:translate(-4px, -3px);
+                  transform:translate(-4px, -3px);
+                }
+              }
+              &.mat-cell {
+                color: rgba(115, 115, 115, 0.87);
+                text-align: center;
+                vertical-align: middle;
+                border-right: 1px solid #eee;
+                padding: 0 15px;
+                font-size: 12px;
+              }
+              .button-red {
+                background-color: #e10303c9;
+                color: #fff;
+                i {
+                  font-size: 14px;
+                  margin-right: 5px;
+                }
+              }
+              
+            }
+          }
+        }
+
+        .mat-form-field {
+          font-size: 14px;
+          width: 100%;
+        }
+      }
+    }
+  }
+}

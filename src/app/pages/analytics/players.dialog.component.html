@@ -1,0 +1,28 @@
+<div id="playersDialog">
+<h1 mat-dialog-title>
+    Players List
+</h1>
+<div mat-dialog-content>
+    <div class="viewvvalue" *ngIf="view2">
+            <p>Player One ID- {{data.playersdata[0].varifyId}} -( {{data.playersdata[0].colyseus_id}} ) User Coins Before Playing : {{data.playersdata[0].last_updated_user_coin}}</p>
+            <p>Player Two ID - {{data.playersdata[1].varifyId}} -( {{data.playersdata[1].colyseus_id}} ) User Coins Before Playing : {{data.playersdata[1].last_updated_user_coin}}</p>
+            <p class="winnerpara">Winner ID - {{data.winnerdata}}</p>
+    </div>
+    <div class="viewvvalue" *ngIf="view3">
+            <p>Player One ID- {{data.playersdata[0].varifyId}} -( {{data.playersdata[0].colyseus_id}} ) User Coins Before Playing : {{data.playersdata[0].last_updated_user_coin}}</p>
+            <p>Player Two ID - {{data.playersdata[1].varifyId}} -( {{data.playersdata[1].colyseus_id}} ) User Coins Before Playing : {{data.playersdata[1].last_updated_user_coin}}</p>
+            <p>Player Three ID - {{data.playersdata[2].varifyId}} -( {{data.playersdata[2].colyseus_id}} ) User Coins Before Playing : {{data.playersdata[2].last_updated_user_coin}}</p>
+            <p class="winnerpara">Winner ID - {{data.winnerdata}}</p>
+    </div>
+    <div class="viewvvalue" *ngIf="view4">
+            <p>Player One ID- {{data.playersdata[0].varifyId}} -( {{data.playersdata[0].colyseus_id}} ) User Coins Before Playing : {{data.playersdata[0].last_updated_user_coin}}</p>
+            <p>Player Two ID - {{data.playersdata[1].varifyId}} -( {{data.playersdata[1].colyseus_id}} ) User Coins Before Playing : {{data.playersdata[1].last_updated_user_coin}}</p>
+            <p>Player Three ID - {{data.playersdata[2].varifyId}} -( {{data.playersdata[2].colyseus_id}} ) User Coins Before Playing : {{data.playersdata[2].last_updated_user_coin}}</p>
+            <p>Player Four ID - {{data.playersdata[3].varifyId}} -( {{data.playersdata[3].colyseus_id}} ) User Coins Before Playing : {{data.playersdata[3].last_updated_user_coin}}</p>
+            <p class="winnerpara">Winner ID - {{data.winnerdata}}</p>
+    </div>
+</div>
+<div mat-dialog-actions>
+    <button mat-button class="buttondialog" (click)="onNoClick()">Close</button>
+</div>
+</div>

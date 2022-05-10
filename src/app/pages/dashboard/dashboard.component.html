@@ -1,0 +1,229 @@
+<!-- <span class="iframeout" id="iframeout"><iframe class="iframe" [src]="url | safe"></iframe></span> -->
+<div class="col-sm-12 col-lg-12" id="dashboard">
+  <div class="animated fadeIn">
+    <div class="col-sm-12 col-lg-12 pad-sty">
+      <div class="row">
+        <div class="col-sm-6 col-lg-3">
+          <div class="card text-white bg-info">
+            <div class="card-body pb-0">
+              <button type="button" class="btn btn-transparent p-0 float-right">
+                <i class="icon-location-pin"></i>
+              </button>
+              <div class="text-value">{{refreshdata.connections}}</div>
+              <div>Members online</div>
+            </div>
+            <div class="chart-wrapper mt-3 mx-3" style="height:70px;">
+              <canvas baseChart class="chart" [datasets]="lineChart2Data" [labels]="lineChart2Labels"
+                [options]="lineChart2Options" [colors]="lineChart2Colours" [legend]="lineChart2Legend"
+                [chartType]="lineChart2Type"></canvas>
+            </div>
+          </div>
+        </div>
+        <!--/.col-->
+        <div class="col-sm-6 col-lg-3">
+          <div class="card text-white bg-primary">
+            <div class="card-body pb-0">
+              <div class="text-value">{{roomsCount}}</div>
+              <div>Rooms online</div>
+            </div>
+            <div class="chart-wrapper mt-3 mx-3" style="height:70px;">
+              <canvas baseChart class="chart" [datasets]="lineChart1Data" [labels]="lineChart1Labels"
+                [options]="lineChart1Options" [colors]="lineChart1Colours" [legend]="lineChart1Legend"
+                [chartType]="lineChart1Type"></canvas>
+            </div>
+          </div>
+        </div>
+        <!--/.col-->
+        <div class="col-sm-6 col-lg-3">
+          <div class="card text-white bg-warning">
+            <div class="card-body pb-0">
+              <div class="text-value">{{refreshdata.cpu}}</div>
+              <div>CPU</div>
+            </div>
+            <div class="chart-wrapper mt-3" style="height:70px;">
+              <canvas baseChart class="chart" [datasets]="lineChart3Data" [labels]="lineChart3Labels"
+                [options]="lineChart3Options" [colors]="lineChart3Colours" [legend]="lineChart3Legend"
+                [chartType]="lineChart3Type"></canvas>
+            </div>
+          </div>
+        </div>
+        <!--/.col-->
+        <div class="col-sm-6 col-lg-3">
+          <div class="card text-white bg-danger">
+            <div class="card-body pb-0">
+              <div class="text-value">{{refreshdata.memory.totalMemMb}} : {{refreshdata.memory.usedMemMb}} (Used)</div>
+              <div>RAM Usage <button (click)="setDeleteTrue()" class="buttonstyle">Delete Option</button></div>
+              <!-- <div>RAM Us<button (click)="setDeleteTrue()" class="buttonstyle">a</button>ge</div> -->
+            </div>
+            <div class="chart-wrapper mt-3 mx-3" style="height:70px;">
+              <canvas baseChart class="chart" [datasets]="barChart1Data" [labels]="barChart1Labels"
+                [options]="barChart1Options" [colors]="barChart1Colours" [legend]="barChart1Legend"
+                [chartType]="barChart1Type"></canvas>
+            </div>
+          </div>
+        </div>
+        <!--/.col-->
+      </div>
+    </div>
+    <!--/.row-->
+  </div>
+  <!--/.Cont Animation-->
+
+  <div id="roomlist">
+    <div class="animated fadeIn">
+      <div class="col-sm-12 col-lg-12 padnone">
+        <mat-card class="matCard" *ngIf='roomslist'>
+          <mat-card-header>
+            <div class="mat-card-header-text">
+              <h5>Search Room details</h5>
+            </div>
+            <mat-form-field appearance="outline">
+              <mat-label>Search Room</mat-label>
+              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+              <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+
+          </mat-card-header>
+          <mat-card-content>
+            <div class="mat-elevation-z8">
+              <div class="mat-table-min-height">
+                <mat-table [dataSource]="dataSource" matSort>
+                  <ng-container matColumnDef="roomId">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Room Id </th>
+                    <td mat-cell *matCellDef="let row"> {{row.roomId}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="private">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Private </th>
+                    <td mat-cell *matCellDef="let row"> {{row.private}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                    <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="maxClients">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Max Clients </th>
+                    <td mat-cell *matCellDef="let row"> {{row.maxClients}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="locked">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Locked </th>
+                    <td mat-cell *matCellDef="let row"> {{row.locked}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="elapsedTime">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> ElapsedTime </th>
+                    <td mat-cell *matCellDef="let row">{{ row.elapsedTime/1000/60 | number:'1.0-0' }} - minutes </td>
+                  </ng-container>
+                  <ng-container matColumnDef="createdAt">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Created At </th>
+                    <td mat-cell *matCellDef="let row"> {{row.createdAt | date:'medium'}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="clients">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Clients </th>
+                    <td mat-cell *matCellDef="let row"> {{row.clients}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="processId">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>&nbsp;&nbsp;&nbsp;&nbsp;Details </th>
+                    <td mat-cell *matCellDef="let row"> <button mat-button class="ButtonRoomDetails" (click)="roomdetails(row.roomId)">Room
+                        Details   <i class="material-icons">
+                          arrow_right_alt
+                        </i></button> 
+                      
+                        <button class="button-red" *ngIf="roomDeleteButton" (click)="commomMethod(row.roomId,'disconnect')"><i
+                          class="material-icons">
+                          close
+                        </i></button></td>
+                  </ng-container>
+
+                  <!-- Action Column -->
+                  <!-- <a mat-button (click)="openDialog('Update',row._id)">Edit</a> | -->
+
+                  <!-- <ng-container matColumnDef="action">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+                    <td mat-cell *matCellDef="let row" class="action-link">
+                      <a mat-button class="button-red" (click)="openDialog('Delete',row._id, row.coins)"><i
+                          class="material-icons">
+                          edit
+                        </i>Delete</a>
+                    </td>
+                  </ng-container> -->
+
+
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+                  </tr>
+                </mat-table>
+              </div>
+              <mat-paginator showFirstLastButtons [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+            </div>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="matCard" *ngIf='roomlistshow'>
+          <mat-card-header>
+            <div class="mat-card-header-text">
+              <h5>Search User details</h5>
+            </div>
+            <mat-form-field appearance="outline">
+              <mat-label>Search User</mat-label>
+              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+              <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+
+            <div class="mat-card-header-text">
+              <button mat-button (click)="bacttoroomlist()" class="Backbutton"> <i class="material-icons">
+                  keyboard_backspace
+                </i> <span class="text">Back to List</span></button>
+            </div>
+
+          </mat-card-header>
+          <mat-card-content>
+            <div class="mat-elevation-z8">
+              <div class="mat-table-min-height">
+                <mat-table [dataSource]="dataSource2" matSort>
+                  <ng-container matColumnDef="roomIdofRoom">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Room Id </th>
+                    <td mat-cell *matCellDef="let row"> {{roomIdofRoom}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="sessionId">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Session Id </th>
+                    <td mat-cell *matCellDef="let row"> {{row.sessionId}}
+                      <button class="button-red" *ngIf="roomDeleteButton" (click)="commomMethod(roomIdofRoom,'_forceClientDisconnect',row.sessionId)"><i
+                        class="material-icons">
+                        close
+                      </i></button> </td>
+                  </ng-container>
+                  <!-- <ng-container matColumnDef="action">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+                    <td mat-cell *matCellDef="let row"> <button mat-button class="destroybutton" (click)="detroyPlayer(row.sessionId)">Destroy Player<i class="material-icons">
+                      clear
+                    </i></button> </td>
+                  </ng-container> -->
+                  <!-- Action Column -->
+                  <!-- <a mat-button (click)="openDialog('Update',row._id)">Edit</a> | -->
+                  <!-- <ng-container matColumnDef="action">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+                    <td mat-cell *matCellDef="let row" class="action-link">
+                      <a mat-button class="button-red" (click)="openDialog('Delete',row._id, row.coins)"><i
+                          class="material-icons">
+                          edit
+                        </i>Delete</a>
+                    </td>
+                  </ng-container> -->
+
+
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns2;">
+                  </tr>
+                </mat-table>
+              </div>
+              <mat-paginator showFirstLastButtons [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+    </div>
+  </div>
+
+  <!--/.Cont Animation-->
+</div>
+<!--/.Container-->

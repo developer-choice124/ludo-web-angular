@@ -1,0 +1,33 @@
+#dialog {
+  .mat-dialog-title{
+    // margin: -20px 0 5px 0;
+    h3{
+      font-weight: bolder;
+    }
+  }
+  .mat-dialog-content {
+    padding: 16px 26px;
+    border-top: 1px solid#b9b9b9;
+    border-bottom: 1px solid#b9b9b9;
+    p{
+      margin-bottom: 0.2rem;
+      font-size: 16px;
+      .ques {
+
+      }
+      .data{
+
+      }
+    }
+  }
+  .mat-dialog-actions{
+    .success{
+      margin: 0 0 0 auto;
+    }
+    .failure{
+      background-color:#c10000;
+      color:#fff;
+    }
+  }
+}
+
